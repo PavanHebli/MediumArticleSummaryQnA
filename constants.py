@@ -10,6 +10,7 @@ class inputMessage:
     enterURL=f"enter Medium URL here (e.g.- https://medium.com/xxxxxxxxxxxx): "
     quizQuestions=f"want to test your knowledge? how many questions you would like to answer? (Max {quizQuestionsNumber}, type Q/Quit to quit): "
     answerQuestions="type option A or B to answer and press enter (type Q/Quit to quit): "
+    incorrectURLMsg=f"[Incorrect URL] Not a Medium URL Icorrenct URL, please check the URL"
 
 class ModelParam:
     model="llama3-8b-8192"

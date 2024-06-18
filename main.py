@@ -4,7 +4,7 @@ import argparse
 
 
 # TODO:
-# 1. Add Randomness to the answers.
+# 1. Add Randomness to the options: right now A is correct and B is incorrect.
 # 2. Complete argument parser functionality to switch between summary and quiz.
 # 3. Fix bug: sometimes the requests module returns None. (implement different agents)
 
@@ -14,7 +14,7 @@ import argparse
 # # parser.add_argument("-host", "--hostname", dest = "hostname", default = "xyz.edu", help="Server name")
 # args = parser.parse_args()
 
-ipURL= input(f"enter medium URL here (e.g.- https://medium.com/xxxxxxxxxxxx): ")
+ipURL= input(inputMessage.enterURL)
 responseBS = FetchMediumLink(ipURL)
 if CheckMediumLink(responseBS):
     article = responseBS.find('article')
@@ -22,6 +22,10 @@ if CheckMediumLink(responseBS):
     for paragraph in article:
         inputText+=paragraph.text+ " "
     summaryText=GetSummary(inputText)
+    print("-"*50)
+    print(summaryText)
+    print("-"*50)
+    print()
     questionsGenerate=input(inputMessage.quizQuestions).strip()
     if questionsGenerate =="" or questionsGenerate== "q" or questionsGenerate == "quit":
         questionsGenerate=None
@@ -51,7 +55,7 @@ if CheckMediumLink(responseBS):
             print(f"A: {right}")
             print(f"B: {wrong}")
             ansDict={"a":"Correct Answer!!", "b":"Wrong Answer :("}
-            answr=input("type option A or B to answer and press enter (type Q/Quit to quit): ").strip().lower()
+            answr=input(inputMessage.answerQuestions).strip().lower()
             if answr== "q" or answr == "quit":
                 break
             answr=answr.strip().lower()
@@ -60,5 +64,5 @@ if CheckMediumLink(responseBS):
             print("-"*50)
 
 else:
-    print(f"[Icorrenct URL] Not a Medium URL Icorrenct URL, please check the URL")
+    print(inputMessage.incorrectURLMsg)
 
